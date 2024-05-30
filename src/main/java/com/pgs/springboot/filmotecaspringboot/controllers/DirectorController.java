@@ -20,7 +20,7 @@ public class DirectorController {
     public String listarDirectores(Model model){
         List<Director> directores = directorService.listarTodosLosDirectores();
     model.addAttribute("directores", directores);
-    return "director/lista:directores";
+    return "director/lista_directores";
     }
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevoDirector(Model model){
@@ -41,7 +41,13 @@ public class DirectorController {
         return "director/formulario_director";
     }
 
-    @GetMapping
+    @PostMapping("/actualizar")
+    public String actualizarDirector(@ModelAttribute Director director){
+        directorService.actualizarDirector(director);
+        return "redirect:/directores/listar";
+    }
+
+    @GetMapping("/eliminar/{id}")
     public String eliminarDirector(@PathVariable Long id) throws ClassNotFoundException {
         directorService.eliminarDirector(id);
         return "redirect:/directores/listar";
