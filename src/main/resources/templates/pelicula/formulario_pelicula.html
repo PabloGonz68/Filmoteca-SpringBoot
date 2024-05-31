@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Pelicula</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Filmoteca</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/directores/">Directores </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/peliculas/">Películas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/categorias/">Categorias </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/productoras/">Productoras</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h2>Formulario de Pelicula</h2>
+    <form action="/peliculas/guardar" method="post">
+        <input type="hidden" name="id" th:value="${pelicula.id}">
+
+        <div class="form-group">
+            <label for="titulo">Título</label>
+        <input th:value="${pelicula.titulo}" type="text" class="form-control"
+        id="titulo" name="titulo" placeholder="Escribe el titulo de la película" required>
+        </div>
+
+        <div class="form-group">
+            <label for="productoraId">Productora</label>
+            <select class="form-control" id="productoraId" name="productoraId" required>
+                <option th:each="productora : ${productoras}" th:value="*{productora.id}" th:text="${productora.nombre}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+        <label for="categoriaId">Categoria</label>
+        <select class="form-control" id="categoriaId" name="categoriaId" required>
+            <option th:each="categoria : ${categorias}" th:value="*{categoria.id}" th:text="${categoria.nombre}"></option>
+        </select>
+    </div>
+        <div class="form-group">
+            <label for="autoresIds">Autores</label>
+            <select multiple class="form-control" id="autoresIds" name="autoresIds" required>
+                <option th:each="autor : ${autores}" th:value="*{autor.id}" th:text="${autor.nombre}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+
+    </form>
+</div>
+
+
+</body>
+</html>

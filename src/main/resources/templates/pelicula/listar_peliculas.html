@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Pelicula</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Filmoteca</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/directores/">Directores </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/peliculas/">Películas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/categorias/">Categorias </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/productoras/">Productoras</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h2>Listado de Pelicula</h2>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>Productora</th>
+            <th>Categoria</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pelicula : ${peliculas}">
+            <td th:text="${pelicula.id}"></td>
+            <td th:text="${pelicula.titulo}"></td>
+            <td th:text="${pelicula.productor.nombre}"></td>
+            <td th:text="${pelicula.categoria.nombre}"></td>
+            <td>
+                <a th:href="@{/peliculas/{id}/editar(id=${pelicula.id})}" class="btn btn-primary btn-sm">Editar</a>
+                <a th:href="@{/peliculas/{id}/eliminar(id=${pelicula.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                <a th:href="@{'/peliculas/' + ${pelicula.id} + '/directores'" class="btn btn-info btn-sm">Ver Directores</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/peliculas/nuevo" class="btn btn-success">Agregar película</a>
+</div>
+
+
+</body>
+</html>

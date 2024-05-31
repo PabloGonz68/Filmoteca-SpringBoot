@@ -36,7 +36,7 @@ public class PeliculaController {
     public String listarPeliculas(Model model){
         List<Pelicula> peliculas = peliculaService.listarTodasLasPeliculas();
         model.addAttribute("peliculas", peliculas);
-        return "pelicula/listar-peliculas";
+        return "pelicula/listar_peliculas";
 
     }
     @GetMapping("/nuevo")
@@ -46,7 +46,7 @@ public class PeliculaController {
         model.addAttribute("productoras", productoraService.listarTodasLasProductoras());
         model.addAttribute("categorias", categoriaService.listarTodasLasCategorias());
         model.addAttribute("directores", directorService.listarTodosLosDirectores());
-        return "pelicula/formulario-pelicula";
+        return "pelicula/formulario_pelicula";
 
     }
 @PostMapping("/guardar")
@@ -70,12 +70,12 @@ public class PeliculaController {
     public String mostrarFormularioEditarPelicula(@PathVariable Long id, Model model){
         Optional<Pelicula> pelicula = peliculaService.buscarPorId(id);
        if(pelicula.isPresent()){
-           model.addAttribute("pelicula", pelicula);
+           model.addAttribute("pelicula", pelicula.get());
            model.addAttribute("productoras", productoraService.listarTodasLasProductoras());
            model.addAttribute("categorias", categoriaService.listarTodasLasCategorias());
            model.addAttribute("directores", directorService.listarTodosLosDirectores());
        }
-        return "pelicula/formulario-pelicula";
+        return "pelicula/formulario_pelicula";
 
     }
 
@@ -109,7 +109,7 @@ public class PeliculaController {
         model.addAttribute("directores", pelicula.getDirectores());
 
     }
-    return "libro/mosrar-directores";
+    return "libro/mostrar_directores";
     }
 
     @GetMapping("/{id}/eliminar")
