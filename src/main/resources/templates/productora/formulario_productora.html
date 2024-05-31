@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Directores de Pelicula</title>
+    <title>Formulario de Productora</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
 <body>
@@ -32,11 +32,19 @@
 </nav>
 
 <div class="container mt-5">
-    <h2 class="mb-4">Directores de la Pelicula</h2>
-   <ul class="list-group mt-3">
-       <li th:each="director : ${directores}" class="list-group-item" th:text="${director.nombre}"></li>
-   </ul>
-    <a href="/peliculas/" class="btn btn-secondary mt-3">Volver</a>
+    <h2>Formulario de Productora</h2>
+   <form th:action="@{/productoras/guardar}" method="post">
+
+       <input type="hidden" name="id" th:value="${productora.id}">
+
+       <div class="form-group">
+           <label for="nombre">Nombre</label>
+           <input class="form-control" placeholder="Escribe el nombre de la productora" type="text" name="nombre" id="nombre" th:value="${productora.nombre}">
+       </div>
+
+       <input type="submit" class="btn btn-primary" value="Guardar">
+
+   </form>
 </div>
 
 

@@ -33,7 +33,7 @@
 
 <div class="container mt-5">
     <h2>Formulario de Pelicula</h2>
-    <form th:action="/peliculas/guardar" method="post">
+    <form th:action="@{/peliculas/guardar}" method="post">
         <input type="hidden" name="id" th:value="${pelicula.id}">
 
         <div class="form-group">
@@ -55,9 +55,9 @@
         </select>
     </div>
         <div class="form-group">
-            <label for="autoresIds">Autores</label>
-            <select multiple class="form-control" id="autoresIds" name="autoresIds" required>
-                <option th:each="autor : ${autores}" th:value="*{autor.id}" th:text="${autor.nombre}"></option>
+            <label for="directoresId">Directores</label>
+            <select multiple class="form-control" id="directoresId" name="directoresId" required>
+                <option th:each="director : ${directores}" th:value="*{director.id}" th:text="${director.nombre}"></option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>

@@ -23,7 +23,7 @@ public class ProductoraController {
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevaProductora(Model model){
         model.addAttribute("productora", new Productora());
-        return "productora/formulario-productora";
+        return "productora/formulario_productora";
     }
 
     @PostMapping("/guardar")
@@ -36,7 +36,7 @@ public class ProductoraController {
     public String listarProductoras(Model model){
         List<Productora> productoras = productoraService.listarTodasLasProductoras();
         model.addAttribute("productoras", productoras);
-        return "productora/listar-productoras";
+        return "productora/listar_productoras";
     }
 
     @GetMapping("/{id}")
@@ -47,14 +47,14 @@ public class ProductoraController {
             model.addAttribute("productora", productora);
             model.addAttribute("peliculas", productora.getPeliculas());
         }
-        return "productora/mostrar-productora";
+        return "productora/mostrar_productora";
     }
 
     @GetMapping("/{id}/actualizar")
     public String mostrarFormularioEditarProductora(@PathVariable Long id, Model model){
         Optional<Productora> productoraOptional = productoraService.buscarPorId(id);
         productoraOptional.ifPresent(value -> model.addAttribute("productora", value));
-        return "productora/formulario-productora";
+        return "productora/formulario_productora";
     }
 
     @PostMapping("/{id}/actualizar")
@@ -83,7 +83,7 @@ public class ProductoraController {
         model.addAttribute("productora", productora);
         model.addAttribute("peliculas", productora.getPeliculas());
     }
-    return "productora/mostrar-peliculas-productora";
+    return "productora/mostrar_peliculas_productora";
     }
 
 

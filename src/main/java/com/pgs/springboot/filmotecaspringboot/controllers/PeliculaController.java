@@ -109,7 +109,7 @@ public class PeliculaController {
         model.addAttribute("directores", pelicula.getDirectores());
 
     }
-    return "libro/mostrar_directores";
+    return "pelicula/mostrar_directores";
     }
 
     @GetMapping("/{id}/eliminar")
