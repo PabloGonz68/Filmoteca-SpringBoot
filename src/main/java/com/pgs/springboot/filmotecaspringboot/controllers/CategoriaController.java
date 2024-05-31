@@ -25,14 +25,14 @@ public class CategoriaController {
     public String listarCategorias(Model model){
         List<Categoria> categorias = categoriaService.listarTodasLasCategorias();
         model.addAttribute("categorias", categorias);
-         return  "categoria/listar-categorias";
+         return  "categoria/listar_categorias";
     }
 
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevaCategoria(Model model){
     Categoria categoria = new Categoria();
     model.addAttribute("categoria", categoria);
-        return  "categoria/formulario-categoria";
+        return  "categoria/formulario_categoria";
     }
 
     @PostMapping("/guardar")
@@ -48,7 +48,7 @@ public class CategoriaController {
     public String mostrarFormularioEditarCategoria(@PathVariable Long id, Model model){
         Optional<Categoria> categoria = categoriaService.buscarPorId(id);
         categoria.ifPresent(value -> model.addAttribute("categoria", value));
-        return  "categoria/formulario-categoria";
+        return  "categoria/formulario_categoria";
     }
 
     @PostMapping("/{id}/actualizar")
@@ -62,7 +62,7 @@ public class CategoriaController {
         return "redirect:/categorias/listar";
     }
 
-    @GetMapping("*/{id}/eliminar")
+    @GetMapping("/{id}/eliminar")
     public String eliminarCategoria(@PathVariable Long id){
         categoriaService.eliminarCategoria(id);
         return "redirect:/categorias/listar";

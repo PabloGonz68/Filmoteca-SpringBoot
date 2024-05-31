@@ -33,7 +33,7 @@
 
 <div class="container mt-5">
     <h2>Formulario de Pelicula</h2>
-    <form action="/peliculas/guardar" method="post">
+    <form th:action="/peliculas/guardar" method="post">
         <input type="hidden" name="id" th:value="${pelicula.id}">
 
         <div class="form-group">
